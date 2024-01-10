@@ -193,51 +193,50 @@ class ReceiptDetails(BaseModel):
 
 if __name__ == '__main__':
     with app.app_context():
-        # db.drop_all()
+        db.drop_all()
         db.create_all()
 
-        # import hashlib
-        #
-        # u1 = User(name='Van', username='hara', password=str(hashlib.md5('abcabc'.encode('utf-8')).hexdigest()),
-        #           user_role=UserRoleEnum.BenhNhan)
-        # u2 = User(name='NhatThao', username='thaovu', password=str(hashlib.md5('18062003'.encode('utf-8')).hexdigest()),
-        #           user_role=UserRoleEnum.BacSi)
-        # u3 = User(name='ThanhThuy', username='thuythuhai', password=str(hashlib.md5('24112003'.encode('utf-8')).hexdigest()),
-        #           user_role=UserRoleEnum.Admin)
-        # u4 = User(name='vanvan', username= 'vanvan', password=str(hashlib.md5('26112003'.encode('utf-8')).hexdigest()),
-        #           user_role=UserRoleEnum.YTa)
-        # u5 = User(name='hara', username='vavan', password=str(hashlib.md5('26112003'.encode('utf-8')).hexdigest()),
-        #           user_role=UserRoleEnum.YTa)
-        # u6 = User(name='Thuy', username='thuy', password=str(hashlib.md5('2003'.encode('utf-8')).hexdigest()),
-        #           user_role=UserRoleEnum.ThuNgan)
-        # yta1 = YTa(id=4,ho_ten='Trần Thị B', ca_lam=9)
-        # dsk1 = DanhSachKham(id= "DS01",so_benh_nhan=10, y_ta_id=4)
+        import hashlib
+
+        u1 = User(name='Van', username='hara', password=str(hashlib.md5('abcabc'.encode('utf-8')).hexdigest()),
+                  user_role=UserRoleEnum.BenhNhan)
+        u2 = User(name='NhatThao', username='thaovu', password=str(hashlib.md5('18062003'.encode('utf-8')).hexdigest()),
+                  user_role=UserRoleEnum.BacSi)
+        u3 = User(name='ThanhThuy', username='thuythuhai', password=str(hashlib.md5('24112003'.encode('utf-8')).hexdigest()),
+                  user_role=UserRoleEnum.Admin)
+        u4 = User(name='vanvan', username= 'vanvan', password=str(hashlib.md5('26112003'.encode('utf-8')).hexdigest()),
+                  user_role=UserRoleEnum.YTa)
+        u5 = User(name='hara', username='vavan', password=str(hashlib.md5('26112003'.encode('utf-8')).hexdigest()),
+                  user_role=UserRoleEnum.YTa)
+        u6 = User(name='Thuy', username='thuy', password=str(hashlib.md5('2003'.encode('utf-8')).hexdigest()),
+                  user_role=UserRoleEnum.ThuNgan)
+        yta1 = YTa(id=4,ho_ten='Trần Thị B', ca_lam=9)
+        dsk1 = DanhSachKham(id= "DS01",so_benh_nhan=10, y_ta_id=4)
         dvT1 = DonViThuoc(ten='Viên')
         dvT2 = DonViThuoc(ten='Vỉ')
         dvT3 = DonViThuoc(ten='Chai')
         thuoc1 = Thuoc(id='T01',name='Paracetamol', ngaysanxuat='2021-12-12',dongia='20000', don_vi_thuoc_id = 1)
         thuoc2 = Thuoc(id='T02',name='Penicilin', ngaysanxuat='2023-01-02', dongia='10000', don_vi_thuoc_id=2)
         thuoc3 = Thuoc(id='T03',name='Mometasone', ngaysanxuat='2023-02-11',hansudung='2024-04-04',dongia='12000', don_vi_thuoc_id=3)
-        # bn1 = BenhNhan(id=1, ho='Nguyen Van',ten='C',ngay_sinh="2003-12-04", gioi_tinh=0,
-        #                diachi='huynh tan phat, nha be', email='yanghara@gmail.com',
-        #                so_dien_thoai='0123762475', danh_sach_kham_id = "DS01")
-        # # bn2 = BenhNhan(id=2, ho='Nguyễn Thị', ten='Cúc', ngay_sinh="2003-06-12", gioi_tinh=0,
-        # #                diachi='Nhơn Đức, Nhà Bè', email='yan@gmail.com',
-        # #                so_dien_thoai='0123764475', danh_sach_kham_id="DS01")
-        # #
-        # # db.session.add_all([u1,u2,u3,u4,u5,yta1,dsk1,dvT1,dvT2,dvT3,thuoc3,thuoc1,thuoc2,bn1,bn2])
-        # # db.session.commit()
+        bn1 = BenhNhan(id=1, ho='Nguyen Van',ten='C',ngay_sinh="2003-12-04", gioi_tinh=0,
+                       diachi='huynh tan phat, nha be', email='yanghara@gmail.com',
+                       so_dien_thoai='0123762475', danh_sach_kham_id = "DS01")
+        bn2 = BenhNhan(id=2, ho='Nguyễn Thị', ten='Cúc', ngay_sinh="2003-06-12", gioi_tinh=0,
+                       diachi='Nhơn Đức, Nhà Bè', email='yan@gmail.com',
+                       so_dien_thoai='0123764475', danh_sach_kham_id="DS01")
+
         bs1 = BacSi(id=1, chuyen_mon='Tai, Mũi, Họng',bang_cap='Gioi', ho_ten='Nguyen Trong N')
-        # # pk1 = PhieuKhamBenh(id=1, ngay_kham='2023-01-5', trieu_chung='Viêm họng, Ho, Sỗ mũi', du_doan_benh='Cảm', benh_nhan_id=1, bac_si_id=1)
-        # # toathuoc1 = ChiTietToaThuoc(thuoc_id='T01', phieu_kham_id=1, so_luong=5, lieu_luong='2 viên/ngày', cach_dung='Uống sau khi ăn', created_date='2023-01-5')
-        # # bs2 = BacSi(id=2, chuyen_mon='Hệ Tiêu Hóa', bang_cap='Khá', ho_ten='Nguyễn Bài Tập')
-        # # toathuoc2 = ChiTietToaThuoc(thuoc_id='T03',phieu_kham_id=2, so_luong=2, lieu_luong='1 viên/ngày', cach_dung='Uống trước khi ăn', created_date='2023-11-15')
-        # # pk2 = PhieuKhamBenh(id=2, ngay_kham='2023-11-15', trieu_chung='Đau bụng, biếng ăn', du_doan_benh='Đau dạ dày',
-        # #                     benh_nhan_id=2, bac_si_id=2)
-        # # bn2 = BenhNhan(id=3, ho='Nguyễn Ngọc', ten='Thu', ngay_sinh="2003-12-2", gioi_tinh=0,
-        # #                               diachi='Võ Văn Tần,Quận 3', email='ngocthu@gmail.com',
-        # #                               so_dien_thoai='0134964475', danh_sach_kham_id="DS01")
-        # # db.session.add_all([bs1,bs2,toathuoc1,toathuoc2,pk2,pk1,bn2])
-        # # db.session.commit()
-        db.session.add_all([thuoc3,thuoc2,thuoc1,dvT1,dvT2,dvT3])
+        pk1 = PhieuKhamBenh(id=1, ngay_kham='2023-01-5', trieu_chung='Viêm họng, Ho, Sỗ mũi', du_doan_benh='Cảm', benh_nhan_id=1, bac_si_id=1)
+        toathuoc1 = ChiTietToaThuoc(thuoc_id='T01', phieu_kham_id=1, so_luong=5, lieu_luong='2 viên/ngày', cach_dung='Uống sau khi ăn', created_date='2023-01-5')
+        bs2 = BacSi(id=2, chuyen_mon='Hệ Tiêu Hóa', bang_cap='Khá', ho_ten='Nguyễn Bài Tập')
+        toathuoc2 = ChiTietToaThuoc(thuoc_id='T03',phieu_kham_id=2, so_luong=2, lieu_luong='1 viên/ngày', cach_dung='Uống trước khi ăn', created_date='2023-11-15')
+        pk2 = PhieuKhamBenh(id=2, ngay_kham='2023-11-15', trieu_chung='Đau bụng, biếng ăn', du_doan_benh='Đau dạ dày',
+                            benh_nhan_id=2, bac_si_id=2)
+        bn3 = BenhNhan(id=3, ho='Nguyễn Ngọc', ten='Thu', ngay_sinh="2003-12-2", gioi_tinh=0,
+                                      diachi='Võ Văn Tần,Quận 3', email='ngocthu@gmail.com',
+                                      so_dien_thoai='0134964475', danh_sach_kham_id="DS01")
+
+
+        db.session.add_all([u1,u2,u3,u4,u5,u6,yta1,dsk1,thuoc1,
+                            thuoc2,thuoc3,bn1,bn2,bn3,bs1,bs2,pk1,pk2,toathuoc2,toathuoc1,dvT1,dvT2,dvT3])
         db.session.commit()
