@@ -1,17 +1,39 @@
 {% extends 'layout/base.html' %}
 
-{% block content %}
-<h1 class="text-center text-info mt-1">ĐĂNG NHẬP NGƯỜI DÙNG</h1>
+{% block title %}Đăng Nhập Tài Khoản{% endblock %}
 
-<form method="post" action="">
-  <div class="mb-3 mt-3">
-    <label for="username" class="form-label">Tên đăng nhập:</label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập">
-  </div>
-  <div class="mb-3">
-    <label for="pwd" class="form-label">Mật khẩu:</label>
-    <input type="password" class="form-control" id="pwd" name="password" placeholder="Mật khẩu">
-  </div>
-  <button type="submit" class="btn btn-primary">Đăng nhập</button>
+{% block content %}
+<h1 class="text-center text-info mt-1">ĐĂNG NHẬP TÀI KHOẢN NGƯỜI DÙNG</h1>
+{% if err_msg %}
+<div class="alert alert-danger">
+    {{ err_msg }}
+</div>
+{% endif %}
+<form method="post" action="" class="container">
+    <div class="mb-3 mt-3">
+        <label for="selectuser" class="form-label">Loại tài khoản:</label>
+        <select class="form-select" id="selectuser" name="selectuser" enabled>
+            <option id="1">BenhNhan</option>
+            <option id="3">YTa</option>
+            <option id="2">BacSi</option>
+            <option id="4">ThuNgan</option>
+            <option id="5">Admin</option>
+        </select>
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="username" class="form-label">Tên đăng nhập:</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+    </div>
+    <div class="mb-3">
+        <label for="pwd" class="form-label">Mật khẩu:</label>
+        <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
+    </div>
+    <div class="md-3 d-flex align-items-center justify-content-center">
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <span style="padding-block:15px">Chưa có tài khoản? <a href="/register">Đăng ký ngay!</a></span>
+    </div>
+
 </form>
 {% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Lập Phiếu Khám{% endblock %}
+
+{% block content %}
+<h2 class="text-center text-body mt-1">PHIẾU KHÁM BỆNH</h2>
+
+<form action="" class="container mb-3 mt-3 d-flex align-items-center justify-content-center">
+    <div class="border border-1 border-secondary rounded" style="width:750px">
+        <div class="row mb-3 mt-3 px-3">
+            <div class="col-4">1. Thông tin bệnh nhân</div>
+            <div class="progress col-8 mt-3" style="height:1px;">
+                <div class="progress" style="width:100%; background-color: #4e5359"></div>
+            </div>
+        </div>
+
+        <div class="row mb-3 mt-3 px-3">
+            <div class="col-4">
+                <label for="id" class="form-label">Mã Bệnh Nhân<span class="text-danger">*</span></label>
+                <input onchange="saveDataExams()" type="text" class="saveExamData form-control" id="id" name="id" value="">
+            </div>
+            <div class="col-8">
+                <label for="name" class="form-label">Họ Tên<span class="text-danger">*</span></label>
+                <input onchange="saveDataExams()" type="text" class="saveExamData form-control" id="name" name="name" placeholder="Họ Tên" value="">
+            </div>
+        </div>
+
+        <div class="mb-3 mt-3 px-3">
+            <label for="address" class="form-label">Địa chỉ<span class="text-danger">*</span></label>
+            <input type="text" class="saveExamData form-control" id="address" name="address" placeholder="Địa chỉ" value="">
+        </div>
+
+        <div class="row mb-3 mt-3 px-3">
+            <div class="col-6">
+                <label for="birth" class="form-label">Ngày sinh<span class="text-danger">*</span></label>
+                <input type="date" class="saveExamData form-control" id="birth" name="birth" value="">
+            </div>
+            <div class="col-6">
+                <label for="phone" class="form-label">Số điện thoại<span class="text-danger">*</span></label>
+                <input type="text" class="saveExamData form-control" id="phone" name="phone" placeholder="Số điện thoại" value="">
+            </div>
+        </div>
+
+
+        <div class="mb-3 mt-3 px-3">
+            <div>
+                <label for="date" class="form-label">Ngày Khám<span class="text-danger">*</span></label>
+                <input onchange="saveDataExams()" type="date" class="saveExamData form-control" id="date" name="date" placeholder="TT...">
+            </div>
+        </div>
+
+        <div class="mb-3 mt-3 px-3">
+            <label for="symptom">Triệu chứng<span class="text-danger">*</span></label>
+            <textarea onchange="saveDataExams()" class="saveExamData form-control" rows="5" id="symptom" name="symptom"></textarea>
+        </div>
+
+        <div class="mb-3 mt-3 px-3">
+            <label for="disease" class="form-label">Chuẩn đoán bệnh<span class="text-danger">*</span></label>
+            <input onchange="saveDataExams()" type="text" class="form-control" id="disease" name="disease" placeholder="...">
+        </div>
+
+        <div class="row mb-3 mt-3 px-3">
+            <div class="col-4">2. Thông tin toa thuốc</div>
+            <div class="progress col-8 mt-3" style="height:1px;">
+                <div class="progress" style="width:100%; background-color: #4e5359"></div>
+            </div>
+        </div>
+
+        <div class="row mb-3 mt-3 px-3">
+            <div class="col-6 mb-3 mt-3 px-3">
+                <label for="medicineName" class="form-label">Tên thuốc<span class="text-danger">*</span></label>
+                <select onchange="saveDataExams()" name="medicineName" id="medicineName" class="saveExamData form-control">
+                    {% for s in thuoc %}
+                    <option value="{{s.id}}">{{s.name}}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            <div class="col-6 mb-3 mt-3 px-3">
+                <label for="quantity" class="form-label">Số lượng<span class="text-danger">*</span></label>
+                <input onchange="saveDataExams()" type="number" name="quantity" id="quantity" class="saveExamData form-control" min="0" required="">
+            </div>
+        </div>
+
+        <div class="mb-3 mt-3 px-3">
+            <label for="unit" class="form-label">Đơn vị<span class="text-danger">*</span></label>
+            <select id="unit" name="unit" class="saveExamData form-control">
+                <option value="1">Viên</option>
+                <option value="2">Chai</option>
+                <option value="3">Vỹ</option>
+            </select>
+        </div>
+
+        <div class="mb-3 mt-3 px-3">
+            <label for="instruction" class="block mb-2 text-sm font-medium text-gray-900">Cách dùng<span class="text-danger">*</span></label>
+            <input onchange="saveDataExams()" type="text" name="instruction" id="instruction" class="saveExamData form-control" required="">
+        </div>
+
+        <div class="mb-3 d-flex align-items-center justify-content-center">
+            <button type="submit" class="btn btn-primary">Xuất phiếu</button>
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}

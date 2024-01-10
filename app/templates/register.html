@@ -1,0 +1,49 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Đăng Ký Tài Khoản{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-info mt-1">ĐĂNG KÝ TÀI KHOẢN</h1>
+
+<form method="post" enctype="multipart/form-data" action="" class="container">
+    <div class="mb-3 mt-3">
+        <label for="selectuser" class="form-label">Loại tài khoản<span class="text-danger">*</span></label>
+        <select class="form-select" id="selectuser" name="selectuser" enabled>
+            <option>BenhNhan</option>
+            <option>YTa</option>
+            <option>BacSi</option>
+            <option>ThuNgan</option>
+            <option>Admin</option>
+        </select>
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="name" class="form-label">Tên người dùng<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Tên người dùng">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="username" class="form-label">Tên đăng nhập<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập">
+    </div>
+    <div class="mb-3">
+        <label for="pwd" class="form-label">Mật khẩu<span class="text-danger">*</span></label>
+        <input type="password" class="form-control" id="pwd" name="password" placeholder="Mật khẩu">
+    </div>
+    <div class="mb-3">
+        <label for="confirm" class="form-label">Xác nhận mật khẩu<span class="text-danger">*</span></label>
+        <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Xác nhận mật khẩu">
+    </div>
+    {% if err_msg %}
+    <div class="alert alert-danger">
+        {{ err_msg }}
+    </div>
+    {% endif %}
+    <div class="mb-3">
+        <label for="avatar" class="form-label">Ảnh đại diện<span class="text-danger">*</span></label>
+        <input type="file" class="form-control" id="avatar" name="avatar">
+    </div>
+    <div class="md-3 d-flex align-items-center justify-content-center">
+        <button type="submit" class="btn btn-primary">Đăng Ký</button>
+    </div>
+
+</form>
+{% endblock %}

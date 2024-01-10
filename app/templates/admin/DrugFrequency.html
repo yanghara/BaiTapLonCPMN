@@ -1,0 +1,137 @@
+{% extends '/admin/base.html' %}
+
+{% block body %}
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .total_style {
+        border: 1px solid black;
+        margin: 0 0 0 -9%;
+        padding: 8px;
+        width: 155px;
+        text-align: center;
+        background: white;
+        border-radius: 30%
+    }
+
+    .table_style td {
+        text-align: center;
+    }
+</style>
+
+<h1 class="text-center text-danger">THỐNG KÊ TẦN SUẤT SỬ DỤNG THUỐC</h1>
+<div class="d-flex" style="justify-content: center">
+
+    <div class="form-check"
+         style="font-weight: 600;font-size: large;background-color: #e5eadc;margin: 17px 10px 0px 10px; height: 50px; border: 1px solid black; width: 23%; margin: 3% 0px 0px 25%;border-radius: 3rem 0 0 3rem !important; text-align: center;padding: 13px 10px 0px 10px;">
+        <input style="margin-top: 3%;" type="radio" class="form-check-input" id="dangBang" name="optradio"
+               value="dangBang" onclick="openTab(event, 'tab1')" checked>Báo cáo theo bảng
+        <label class="form-check-label" for="dangBang"></label>
+    </div>
+    <div class="form-check"
+         style="font-weight: 600;font-size: large;margin: 17px 10px 0px 10px; height: 50px; border: 1px solid black; width: 23%; margin: 3% 25% 0px 0;border-radius: 0 3rem 3rem 0!important; text-align: center;padding: 13px 10px 0px 10px;">
+        <input style="margin-top: 3%;" type="radio" class="form-check-input" id="dangBieuDo" name="optradio"
+               value="dangBieuDo" onclick="openTab(event, 'tab2')">Báo cáo theo biểu đồ
+        <label class="form-check-label" for="dangBieuDo"></label>
+    </div>
+</div>
+
+
+<div id="tab1" class="tab-content">
+<div style="margin-left: 3%; margin-top: 30px" class="d-flex " >
+    <form class="row">
+            <div class="col-10 form-group">
+                <input type="number" placeholder="Nhập tháng" class="form-control" name="month" min="1" max="12"/>
+            </div>
+            <div class="col-2">
+                <input type="submit" value="Tìm" class="btn btn-info" />
+            </div>
+        </form>
+</div>
+        <div >
+            <table class="table">
+                <tr>
+                    <th>Mã Thuốc</th>
+                    <th>Tên thuốc</th>
+                    <th>Tháng</th>
+                    <th>Tần suất</th>
+                    <th>Ghi Chú</th>
+                </tr>
+
+                {% for s in tanSuat %}
+                <tr>
+                    <td>{{ s[0] }}</td>
+                    <td>{{ s[1] }}</td>
+                    <td>{{ s[2] }}</td>
+                    <td>
+                        {% if s[3] %}
+                            {{ "{:,.1f}".format(s[3]) }} %
+                        {% else %}
+                            0 %
+                        {% endif %}
+                    </td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+</div>
+
+<div id="tab2" class="hidden tab-content" style="width:600px">
+    <div>
+        <canvas id="tuanSuatChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/radioDangBaoCao.js') }}"></script>
+<script>
+    let name = [], info = []
+    let borderColors = [], colors = []
+    let r, g, b;
+
+    {% for s in tanSuat %}
+        name.push('{{ s[0] }}')
+        info.push({{ s[2] }})
+
+        r = Math.random()*255
+        g = Math.random()*255
+        b = Math.random()*255
+
+        colors.push(`rgba(${r}, ${g}, ${b}, 0.5)`)
+        borderColors.push(`rgba(${r}, ${g}, ${b}, 0.5)`)
+    {% endfor %}
+
+    window.onload = function() {
+        const ctx  = document.getElementById('tuanSuatChart').getContext('2d');
+
+        loadChart(ctx, name, info, 'pie', colors, borderColors);
+    }
+
+    function loadChart(ctx, labels, data, type, colors, borderColors) {
+        new Chart(ctx, {
+            type: type,
+            data: {
+                labels: name,
+                datasets: [{
+                    label: 'Thống kê số sản phẩm theo danh mục',
+                    data: info,
+                    backgroundColor: colors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}

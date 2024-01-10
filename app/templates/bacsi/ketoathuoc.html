@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Kê Toa Thuốc{% endblock %}
+
+{% block content %}
+<form method="post" action="" class="container d-flex align-items-center justify-content-center">
+    <div class="border border-1 border-secondary rounded mt-3 mb-3" style="width:800px">
+        <ul class="pagination">
+            <li class="page-item col-md-6"><a class="page-link text-dark" href="/tracuuthuoc">Tra Cứu Thuốc</a></li>
+
+            <li class="page-item col-md-6"><a class="page-link text-secondary" href="/lichsubenh">Tra Cứu Lịch Sử Bệnh</a></li>
+        </ul>
+        <div class="border border-1 border-primary rounded mt-3 mb-3 px-3">
+            <div class="mb-3 mt-3 px-3">
+                <div class="border border-1 border-secondary rounded ">
+                    <table class="table table-striped mb-4 mt-4 px-4">
+                        <thead>
+                        <tr class="px-3">
+                            <th>STT</th>
+                            <th>Tên Thuốc/Hàm Lượng</th>
+                            <th>Đơn vị</th>
+                            <th>Số lượng</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mb-3 d-flex align-items-center justify-content-center">
+                <button type="submit" class="btn btn-primary">Xuất Toa</button>
+            </div>
+    </div>
+    </div>
+
+</form>
+
+{% endblock %}

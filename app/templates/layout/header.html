@@ -6,24 +6,42 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav me-auto">
+                {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link text-secondary" href="/">Trang Chủ</a>
+                    <a class="nav-link text-secondary" href="/{{types}}">Trang Chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary" href="#">Liên Hệ</a>
+                    <a class="nav-link text-secondary" href="/contact">Liên Hệ</a>
                 </li>
-                <!--        <li class="nav-item">-->
-                <!--          <a class="nav-link" href="#">Link</a>-->
-                <!--        </li>-->
+                {% endif %}
+                {% for i in header %}
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" href="/{{types}}/{{i.id}}">{{ i.name }}</a>
+                </li>
+                {% endfor %}
             </ul>
             <div class="mt-1">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link text-success border border-4 border-success rounded" padding="5px" href="/login">Đăng Nhập</a>
-                    </li>
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link text-warning border border-4 border-warning rounded" padding="5px">Đăng Ký</a>
+                        <a class="nav-link text-body " href="/"><img src="{{ current_user.avatar }}" width="40px"/> {{
+                            current_user.name }}</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="/logout"><img
+                                src="https://cdn1.iconfinder.com/data/icons/heroicons-ui/24/logout-1024.png"
+                                width="40px"></a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item" style="padding-right:5px">
+                        <a class="nav-link text-success border border-4 border-success rounded" href="/login">Đăng
+                            Nhập</a>
+                    </li>
+                    <li class="nav-item" style="padding-left:5px">
+                        <a class="nav-link text-warning border border-4 border-warning rounded" href="/register">Đăng
+                            Ký</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

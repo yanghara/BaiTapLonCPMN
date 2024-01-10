@@ -1,0 +1,73 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Tra cứu thuốc{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-10 py-8">
+    <form class="container d-flex align-items-center justify-content-center">
+        <div class="mt-3 mb-3" style="width:800px">
+            <ul class="pagination">
+                <li class="page-item col-md-6"><a class="page-link text-dark" href="/tracuuthuoc">Tra Cứu Thuốc</a></li>
+
+                <li class="page-item col-md-6"><a class="page-link text-secondary" href="/lichsubenh">Tra Cứu Lịch Sử Bệnh</a></li>
+            </ul>
+            <div class="border border-1 border-primary rounded mt-3 mb-3 px-3">
+                <div class="row mb-3 mt-3 px-3">
+                    <div class="col-8">
+                        <input type="text" id="keywordthuoc" name="keywordthuoc" placeholder="Tra cứu thuốc..." class="form-control mb-4">
+
+                    </div>
+                    <div class="col-4" style="width:40px">
+                        <button class="btn btn-outline-dark btn-sm" type="submit">Tìm</button>
+                     </div>
+                </div>
+                <div class="relative overflow-x-auto shadow-lg border-gray-200 border rounded-lg">
+                    <table class="table table-striped mb-4 mt-4 px-4">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Mã thuốc
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Tên thuốc
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Ngày sản xuất
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Hạn sử dụng
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Giá bán
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for t in drugs %}
+                            <tr class="bg-white border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    {{t.id}}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{t.name}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{t.ngaysanxuat }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{t.hansudung}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{"{:,.0f}".format(t.dongia)}} VND
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </form>
+</div>
+{% endblock %}

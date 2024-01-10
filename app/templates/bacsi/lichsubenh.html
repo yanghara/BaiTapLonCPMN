@@ -1,0 +1,115 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Lịch Sử Bệnh{% endblock %}
+
+{% block content %}
+<form method="post" action="" class="container d-flex align-items-center justify-content-center">
+    <div class="mt-3 mb-3" style="width:800px">
+        <ul class="pagination">
+            <li class="page-item col-md-6"><a class="page-link text-secondary" href="/tracuuthuoc">Tra Cứu Thuốc</a></li>
+
+            <li class="page-item col-md-6"><a class="page-link text-dark" href="/lichsubenh">Tra Cứu Lịch Sử Bệnh</a></li>
+        </ul>
+
+        <div class="container mt-3 border border-1 border-danger rounded">
+            <div class="row mb-3 mt-3"  method="get" >
+                <div class="col-5">
+                    <label for="idpatient" class="form-label">Nhập Mã Bệnh Nhân<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control mb-4" id="idpatient" name="idpatient" placeholder="...">
+                </div>
+                <div class="col-4 mt-4">
+                    <button type="submit" class="btn btn-primary" >Tìm</button>
+                </div>
+            </div>
+            <form method="post" action="" class="container d-flex align-items-center justify-content-center">
+                <div class="border border-1 border-secondary rounded mt-3 mb-3" style="width:750px">
+                    <h2 class="text-center text-body mt-1">THÔNG TIN LỊCH SỬ KHÁM</h2>
+
+                    {% for s in patient %}
+                    <div class="row mb-3 mt-3 px-3">
+                        <div class="col-4">
+                            <label for="id" class="form-label">Mã Bệnh Nhân<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="id" name="id" value="{{s[0]}}">
+                        </div>
+                        <div class="col-4">
+                            <label for="firstname" class="form-label">Họ<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Họ" value="{{s[1]}}">
+                        </div>
+                        <div class="col-4">
+                            <label for="name" class="form-label">Tên<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Tên" value="{{s[2]}}">
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-3 px-3">
+                        <div class="col-8">
+                            <label for="birth" class="form-label">Ngày sinh<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="birth" name="birth" value="{{s[3]}}">
+                        </div>
+                        <div class="col-4">
+                            <label for="gioitinh" class="form-label">Giới tính<span class="text-danger">*</span></label>
+                            <div name="gioitinh" id="gioitinh">
+                                <input checked="{{ s[4] }}" type="radio" id="nam" name="gioitinh" value="Nam"
+                                       aria-selected="true">
+                                <label for="nam">Nam</label>
+                                <input checked="true" type="radio" id="nu" name="gioitinh" value="Nu">
+                                <label for="nu">Nữ</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 mt-3 px-3">
+                        <label for="address" class="form-label">Địa chỉ<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ" value="{{s[6]}}">
+                    </div>
+                    <div class="row mb-3 mt-3 px-3">
+                        <div class="col-6">
+                            <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{s[5]}}">
+                        </div>
+                        <div class="col-6">
+                            <label for="phone" class="form-label">Số Điện Thoại<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Số Điện Thoại" value="{{s[7]}}">
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% if not lichsubenh %}
+                        <div class="alert alert-danger">
+                            <span>KHÔNG CÓ LỊCH SỬ KHÁM CỦA BỆNH NHÂN TRONG PHÒNG KHÁM</span>
+                        </div>
+                    {% endif %}
+                    <div class="mb-3 mt-3 px-3 ">
+                        <h4>Lịch sử khám bệnh tại phòng khám</h4>
+                        <table class="table table-striped border border-1 border-secondary rounded">
+                            <thead>
+                            <tr class="table-info">
+                                <th>Ngày Khám</th>
+                                <th>Bác Sĩ</th>
+                                <th>Chuẩn đoán</th>
+                                <th>Thuốc đã kê</th>
+                                <th>Ghi chú</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for x in lichsubenh %}
+                                <tr>
+                                    <td>{{ x[9] }}</td>
+                                    <td>{{ x[12] }}</td>
+                                    <td>{{ x[10] }}</td>
+                                    <td>{{ x[13]  }}</td>
+                                    <td>{{ x[11] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mb-3 mt-3 d-flex align-items-center justify-content-center" method="post">
+                        <a type="submit" class="btn btn-primary" href="/tracuuthuoc">Hoàn tất xem lại</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+{% endblock %}

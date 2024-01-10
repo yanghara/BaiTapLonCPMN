@@ -1,0 +1,226 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .total_style {
+        border: 1px solid black;
+        margin: 0 0 0 -9%;
+        padding: 8px;
+        width: 155px;
+        text-align: center;
+        background: white;
+        border-radius: 30%
+    }
+
+    .table_style td {
+        text-align: center;
+    }
+</style>
+
+<h1 class="text-center">Thống kê báo cáo</h1>
+
+<div class="d-flex" style="justify-content: center">
+
+    <div class="form-check"
+         style="font-weight: 600;font-size: large;background-color: #e5eadc;margin: 17px 10px 0px 10px; height: 50px; border: 1px solid black; width: 23%; margin: 3% 0px 0px 25%;border-radius: 3rem 0 0 3rem !important; text-align: center;padding: 13px 10px 0px 10px;">
+        <input style="margin-top: 3%;" type="radio" class="form-check-input" id="dangBang" name="optradio"
+               value="dangBang" onclick="openTab(event, 'tab0')" checked>Báo cáo theo bảng
+        <label class="form-check-label" for="dangBang"></label>
+    </div>
+    <div class="form-check"
+         style="font-weight: 600;font-size: large;margin: 17px 10px 0px 10px; height: 50px; border: 1px solid black; width: 23%; margin: 3% 25% 0px 0;border-radius: 0 3rem 3rem 0!important; text-align: center;padding: 13px 10px 0px 10px;">
+        <input style="margin-top: 3%;" type="radio" class="form-check-input" id="dangBieuDo" name="optradio"
+               value="dangBieuDo" onclick="openTab(event, 'tab3')">Báo cáo theo biểu đồ
+        <label class="form-check-label" for="dangBieuDo"></label>
+    </div>
+</div>
+
+
+<div class="tab-container mt-5">
+    <div style="margin-left: 3%; border: 1px dashed black; background: #e8ffe6">
+        <!--      hiển thị báo cáo từ tháng 1 đến tháng 12   -->
+        <div id="tab0" class="tab-content">
+            <!--        {{ mon_stats }}-->
+            <table class="table mt-2">
+                <tr class="text-center " style="background: #00ae86; color: white; font-weight: 600; font-size: large">
+                    <th>STT</th>
+                    <th>Thang</th>
+                    <th>Số bệnh nhân</th>
+                    <th>Doanh thu</th>
+                    <th>Ghi chú</th>
+                </tr>
+                {% for s in stats %}
+                <tr class="table_style">
+                    <td>{{ s[0] }}</td>
+                    <td>Tháng {{ s[1] }}</td>
+                    <td>{{ s[2] }}</td>
+                    <td>{{ "{:,.0f}".format(s[3]) }}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <div class="d-flex mb-3" style="justify-content: space-around;">
+                <div style="margin: 5px 0 0 15%;">
+                    Tổng doanh thu:
+                </div>
+                <div id="revenue_total_months" class="total_style rounded">
+
+                </div>
+            </div>
+        </div>
+        <div id="tab1" class=" hidden tab-content">
+            <table class="table mt-2">
+
+                <tr class="text-center " style="background: #00ae86; color: white; font-weight: 600; font-size: large">
+                    <th>STT</th>
+                    <th>Ngày</th>
+                    <th>Số bệnh nhân</th>
+                    <th>Doanh thu</th>
+                    <th>Ghi chú</th>
+                </tr>
+                {% for s in mon_stats %}
+                <tr class="table_style">
+                    <td>{{ s[0] }}</td>
+                    <td>{{ s[1] }}</td>
+                    <td>{{ s[2] }}</td>
+                    <td>{{ "{:,.0f}".format(s[3]) }}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <div class="d-flex mb-3" style="justify-content: space-around;">
+                <div style="margin: 5px 0 0 15%;">
+                    TỔNG DOANH THU:
+                </div>
+                <div id="revenue_total" class="total_style rounded">
+
+                </div>
+            </div>
+        </div>
+        <div id="tab2" class="hidden tab-content">
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <div id="tab3" class="hidden tab-content">
+            <div>
+                <canvas id="myChart2"></canvas>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/radioDangBaoCao.js') }}"></script>
+<!--<script src="{{ url_for('static', filename='js/month.js') }}"></script>-->
+<script>
+
+    let data = []; //du lieu (doanh thu)
+    let labels = []; // ten danh muc
+
+    {% for s in mon_stats %}
+        data.push({{s[3]}})
+        labels.push('{{s[1]}}')
+    {% endfor %}
+        let sum = 0;
+
+        for (let i = 0; i < data.length; i++) {
+            sum += data[i];
+        }
+
+    let data_months=[]
+    {% for s in stats %}
+        data_months.push({{s[3]}})
+    {% endfor %}
+        let sum_months = 0;
+
+        for (let i = 0; i < data_months.length; i++) {
+            sum_months += data_months[i];
+        }
+
+    let data1 = []; //du lieu (doanh thu)
+    let labels1 = []; // ten danh muc
+
+    {% for s in stats %}
+        data1.push({{s[3]}})
+        labels1.push('{{s[1]}}')
+    {% endfor %}
+        let sum1 = 0;
+
+        for (let i = 0; i < data1.length; i++) {
+            sum1 += data1[i];
+        }
+
+
+    window.onload = function() {
+        document.getElementById('revenue_total').innerText = sum.toLocaleString('vi-VN', { maximumFractionDigits: 0 });
+        document.getElementById('revenue_total_months').innerText = sum_months.toLocaleString('vi-VN', { maximumFractionDigits: 0 });
+      const ctx = document.getElementById('myChart');
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Doanh thu theo thang',
+            data: data,
+            borderWidth: 4,
+            borderColor: '#864AF9'
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+
+document.getElementById('revenue_total').innerText = sum.toLocaleString('vi-VN', { maximumFractionDigits: 0 });
+        document.getElementById('revenue_total_months').innerText = sum_months.toLocaleString('vi-VN', { maximumFractionDigits: 0 });
+      const ctx1 = document.getElementById('myChart2');
+
+      new Chart(ctx1, {
+        type: 'line',
+        data: {
+          labels: labels1,
+          datasets: [{
+            label: 'Doanh thu theo thang',
+            data: data1,
+            borderWidth: 4,
+            borderColor: '#864AF9'
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+}
+
+</script>
+<!--<script>-->
+
+<!--    window.onload = function() {-->
+
+<!--}-->
+<!--</script>-->
+
+{% endblock %}
+

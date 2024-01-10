@@ -1,0 +1,82 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Liên Hệ{% endblock %}
+
+{% block content %}
+
+<header id="home-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://res.cloudinary.com/drv8vy8ww/image/upload/v1703845326/rt8lr6lsfv0n83fc6fxo.jpg"
+                 class="mx-auto d-block w-75" alt="...">
+            <div class="carousel-caption d-none d-md-block text-secondary">
+                <h2>Chăm sóc sức khỏe của bạn</h2>
+                <p>Đội ngũ y bác sĩ chuyên nghiệp với trang thiết bị hiện đại.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://res.cloudinary.com/drv8vy8ww/image/upload/v1703845330/zme2pikenkweuyfsp0bq.jpg"
+                 class="mx-auto d-block w-75" alt="...">
+            <div class="carousel-caption d-none d-md-block text-secondary">
+                <h2>Dịch vụ chất lượng</h2>
+                <p>Chúng tôi cam kết mang đến cho bạn những dịch vụ tốt nhất.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#home-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#home-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</header>
+<div class="container mt-5 bg-image">
+    <h1 class="text-center mb-4">Chào mừng đến với Phòng Mạch TTV</h1>
+
+    <p>Phòng mạch TTV cung cấp các dịch vụ chăm sóc sức khỏe chất lượng cao, với đội ngũ bác sĩ và y tá chuyên nghiệp.
+        Với không gian rộng rãi, thoáng mát, trang bị các trang thiết bị y tế tiên tiến và hiện đại nhất.
+        Một đội ngũ y tế đầy đủ chuyên môn, chất lượng cao, đầy đủ lòng nhiệt huyết và trách nhiệm.
+    </p>
+</div>
+
+<!-- Liên Hệ -->
+<section id="lienhe" class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Liên Hệ</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Họ và Tên:</label>
+                        <input type="text" class="form-control" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Nội dung liên hệ:</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <div class="md-3 d-flex align-items-center justify-content-center" style="padding: 0px 0px 15px 0px">
+                        <button type="submit" class="btn btn-primary">Gửi Liên Hệ</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <h4>Thông tin liên hệ:</h4>
+                <p>Địa chỉ: 97 Võ Văn Tần, Phường Võ Thị Sáu, Quận 3, TP Hồ Chí Minh</p>
+                <p>Email: ou@ou.edu.vn</p>
+                <p>Điện thoại: 028-38364748.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

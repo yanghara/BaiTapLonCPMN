@@ -1,0 +1,85 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<!--<h1 class="text-center text=info">XIN CHAO NHAN VIEN THU NGAN</h1>-->
+
+<div class="cen">
+    <div class="payment-form abc">
+        <h2>PHIẾU ĐĂNG KÝ KHÁM TRỰC TIẾP</h2>
+        <form>
+            <div class="mb-3 d-flex" style="margin-right: 10%; justify-content: center">
+                <span for="ngayDangKy" class="form-label" style="margin: 10px">Ngày đăng ký:</span>
+                <input style="width: 32%" type="date" class="form-control" id="ngayDangKy" name="ngayDangKy">
+            </div>
+        </form>
+        <div class="d-flex">
+            <div style="color: #567189">Thông tin bệnh nhân</div>
+            <div class="hr-width">
+                <hr>
+            </div>
+        </div>
+        <form id="invoice-payment-form">
+            <div class="d-flex mb-2 input-info">
+                <div style="margin: 10px 10px">
+                    <span for="ho">Họ:</span><span class="required-color">*</span>
+                    <input type="text" id="ho" name="ho" step="0.01" required placeholder="VD: Nguyễn">
+                </div>
+                <div style="margin: 10px 20%">
+                    <span for="ten">Tên:</span><span class="required-color">*</span>
+                    <input type="text" id="ten" name="ten" step="0.01" required placeholder="VD: Văn A">
+                </div>
+            </div>
+            <div class="d-flex mb-2" style="margin-left: 2%">
+                <form>
+                    <div class="mb-3" style="margin-right: 10%;">
+                        <span for="ngaySinh" class="form-label">Chọn ngày sinh:</span><span
+                            class="required-color">*</span>
+                        <input type="date" class="form-control" id="ngaySinh" name="ngaySinh">
+                    </div>
+                </form>
+                <div style="margin: 2% 0% 0% 14%;">
+                    <span>Giới tính</span><span class="required-color">*</span>
+                    <div class="d-flex rd-margin">
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" value="Nam"
+                                       id="nam" checked>
+                                <label class="form-check-label" for="nam">
+                                    Nam
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" value="Nữ"
+                                       id="nu">
+                                <label class="form-check-label" for="nu">
+                                    Nữ
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin: 10px">
+                <span for="diaChi">Địa chỉ: </span><span class="required-color">*</span>
+                <input type="text" id="diaChi" name="diaChi" required
+                       placeholder="số nhà, xã(phường), quận(huyện), Thành phố">
+            </div>
+            <div style="margin: 10px">
+                <span for="soDienThoai">Số điện thoại: </span><span class="required-color">*</span>
+                <input type="text" id="soDienThoai" name="diaChi" required>
+            </div>
+
+            <div class="d-flex">
+                <button style="margin-left: 81%;" onclick="dangKyKham()" class="btn btn-primary" id="btnDangKy">Đăng ký</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+{% endblock %}

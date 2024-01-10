@@ -1,0 +1,88 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<div class="container mt-5">
+    <form class="mx-auto border p-5 mb-5" action="/" style="max-width: 600px;">
+        <div class="mb-3">
+            <h2 class="text-center">Đăng kí lịch khám</h2>
+            <div class="row mb-3">
+                <div class="d-flex align-items-center">
+                    <label class="me-3">1. Thông tin cá nhân</label>
+                    <hr class="flex-grow-1">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row mb-3">
+            <div class="col">
+                <label for="ho" class="form-label"><span style="color: red;">*</span>Họ:</label>
+                <input type="text" class="form-control" id="ho" placeholder="Nhập họ" name="ho">
+            </div>
+            <div class="col">
+                <label for="ten" class="form-label"><span style="color: red;">*</span>Tên:</label>
+                <input type="text" class="form-control" id="ten" placeholder="Nhập tên" name="ten">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="diaChi" class="form-label"><span style="color: red;">*</span>Địa chỉ:</label>
+            <input type="text" class="form-control" id="diaChi" placeholder="Nhập địa chỉ" name="diaChi">
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="eMail" class="form-label"><span style="color: red;">*</span>Email:</label>
+                <input type="email" class="form-control" id="eMail" placeholder="Địa chỉ email" name="eMail">
+            </div>
+            <div class="col">
+                <label for="soDienThoai" class="form-label"><span style="color: red;">*</span>Số điện thoại:</label>
+                <input type="tel" class="form-control" id="soDienThoai" placeholder="Số điện thoại" name="soDienThoai">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="ngaySinh" class="form-lable"><span style="color: red;">*</span>Ngày sinh:</label>
+                <input type="date" class="form-control" id="ngaySinh" name="ngaySinh">
+            </div>
+            <div class="col">
+                <label class="form-label"><span style="color: red;">*</span>Giới tính:</label>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gioiTinh" id="nam" value="nam" checked>
+                            <label class="form-check-label" for="nam">Nam</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gioiTinh" id="nu" value="nu">
+                            <label class="form-check-label" for="nu">Nữ</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="row mb-3">
+                <div class="d-flex align-items-center">
+                    <label class="me-3">2. Ngày khám bệnh</label>
+                    <hr class="flex-grow-1">
+                </div>
+                <div class="col">
+                    <label for="ngayKham" class="form-lable"><span style="color: red;">*</span>Ngày khám:</label>
+                    <input type="date" class="form-control" name="ngayKham" id="ngayKham">
+                </div>
+            </div>
+        </div>
+        <div class="row mb3 text-center">
+            <div class="col">
+                <button type="button" class="btn btn-primary" onclick="luuNhap()" id="luuNhap">LƯU NHÁP</button>
+            </div>
+            <div class="col">
+                <button type="button" onclick="dangKyKhamOnl()" class="btn btn-primary" id="btnDangKyOnl">ĐĂNG KÝ</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

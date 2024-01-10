@@ -1,0 +1,55 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<style>
+    .table thead tr {
+        background-color: #198754;
+        color: white;
+    }
+</style>
+
+<div>
+    <div class="border p-5 mb-5 mt-5">
+        <h1 class="text-center">DANH SÁCH ĐĂNG KÝ KHÁM BỆNH</h1>
+        <hr>
+        <div class="row text-center">
+            <div class="col">
+                <label class="form-label pr-0">Ngày khám:</label>
+            </div>
+            <div class="col center pl-0">
+                <input type="date" class="form-control" id="ngaykham" name="ngaykham">
+            </div>
+            <table class="table mt-4">
+                <thead>
+                <tr>
+                    <th>MABN</th>
+                    <th>HO</th>
+                    <th>TEN</th>
+                    <th>NGAYSINH</th>
+                    <th>ĐỊA CHỈ</th>
+                    <th>SỐ ĐIỆN THOẠI</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for r in PatientDetail %}
+                <tr>
+                    <td>{{r.id}}</td>
+                    <td>{{r.ho}}</td>
+                    <td>{{r.ten}}</td>
+                    <td>{{r.ngay_sinh}}</td>
+                    <td>{{r.diachi}}</td>
+                    <td>{{r.so_dien_thoai}}</td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-end mt-3">
+            <button type="button" class="btn btn-primary me-2 color ">Gửi thông báo</button>
+            <button type="button" class="btn btn-secondary me-2">Lưu nháp</button>
+            <button type="button" class="btn btn-success">Hoàn thành</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
